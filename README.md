@@ -87,7 +87,7 @@ Data loaded via Python (`sqlalchemy` + `pymysql`) into a `sip_transactions` tabl
 
 **Cross-validation finding:** Q1 (LAG), Q5 (LEAD), and Q8 (cohort) each *independently* returned **264 discontinued investors**, confirming the churn logic is internally consistent across three different SQL techniques.
 
-File: `mf_sip_analysis.sql`
+File: `sql/mf_sip_analysis.sql`
 
 ---
 
@@ -116,7 +116,7 @@ The vast majority of churned investors (≈245 of 315 streaks) lapse at *exactly
 
 **Methodology finding:** row-level averaging of the `discontinued` flag systematically **underestimates** true investor-level churn. This was caught during Phase 3 and corrected using `DISTINCTCOUNT` / `COUNT(DISTINCT investor_id)` logic in both SQL and DAX.
 
-File: `mf_sip_discontinuation_eda.ipynb`
+File: `notebook/mf_sip_discontinuation_eda.ipynb`
 
 ---
 
@@ -189,8 +189,10 @@ Excel · MySQL · Python (Pandas, Matplotlib, SQLAlchemy) · Power BI (DAX, Powe
 ```
 mf-sip-discontinuation-analysis/
 ├── README.md
-├── mf_sip_analysis.sql                (8 queries, Q1–Q8)
-├── mf_sip_discontinuation_eda.ipynb
+├── sql/
+│   └── mf_sip_analysis.sql            (8 queries, Q1–Q8)
+├── notebook/
+│   └── mf_sip_discontinuation_eda.ipynb
 ├── data/
 │   ├── mf_sip_discontinuation.csv     (raw)
 │   └── mf_sip_clean_v2.csv            (cleaned)
